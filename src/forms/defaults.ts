@@ -1,0 +1,311 @@
+import type { FormDef, FormTexts, TemplateId } from "./types";
+
+// The community sign-up form that is live today, as an editable form definition.
+// Question ids match the original columns so existing submissions carry over.
+export const JOIN_2027: FormDef = {
+  version: 1,
+  texts: {
+    kicker: "ראשי קהילות ההכרויות והדייטינג,",
+    headline: "הוזמנתם לקחת חלק בערב הכי רומנטי בישראל",
+    year: "2027",
+    title: "אירוע ההכרויות הגדול של ישראל",
+    lead: "בשיתוף **כל קהילות הדייטינג וההכרויות בישראל**. אירוע היסטורי שייכנס ללוח השנה הקבוע של כולם: הפקת ענק שתתקיים **במקביל ברחבי הארץ**, ערב אחד שבו אלפי אנשים יפגשו, יכירו, ויתאהבו.",
+    cities: "חיפה, נתניה, תל אביב, ראשון, ירושלים, באר שבע",
+    citiesNote: "הרשימה הסופית של הערים המשתתפות תיקבע בהמשך",
+    introTitle: "כתבו לנו קצת על הקהילה שלכם",
+    introText: "מלאו את הטופס כדי להצטרף, אנחנו נהיה בקשר עם כל הפרטים החשובים.",
+    consent: "אני מאשר/ת שהפרטים נכונים ומסכים/ה שצוות ההפקה ייצור איתי קשר בנוגע לאירוע.",
+    submit: "אני בפנים, שלחו את הבקשה",
+    doneTitle: "אתם בפנים!",
+    doneText: "הבקשה התקבלה. צוות ההפקה יחזור אליך בקרוב עם השלבים הבאים.",
+    closedTitle: "ההרשמה נסגרה",
+    closedText: "תודה על ההתעניינות. ההרשמה דרך הטופס הזה הסתיימה.",
+    footer:
+      "נכתב ועוצב באהבה ע״י סיון הדרי וכרמל ברן בשיתוף עם ראשי קהילות הכרויות ודייטינג בישראל",
+  },
+  sections: [
+    {
+      id: "personal",
+      title: "פרטים אישיים",
+      subtitle: "איך נחזור אליך",
+      fields: [
+        { id: "firstName", type: "short", label: "שם פרטי", required: true, width: "half" },
+        { id: "lastName", type: "short", label: "שם משפחה", required: true, width: "half" },
+        {
+          id: "phone",
+          type: "phone",
+          label: "טלפון נייד",
+          required: true,
+          width: "half",
+          placeholder: "050-0000000",
+        },
+        {
+          id: "email",
+          type: "email",
+          label: "מייל",
+          required: true,
+          width: "half",
+          placeholder: "name@example.com",
+        },
+        {
+          id: "city",
+          type: "short",
+          label: "עיר מגורים",
+          required: true,
+          width: "full",
+          placeholder: "למשל תל אביב",
+        },
+      ],
+    },
+    {
+      id: "community",
+      title: "מאפייני הקהילה והעסק שלך",
+      subtitle: "מי אתם ומה כבר עשיתם",
+      fields: [
+        { id: "communityName", type: "short", label: "שם הקהילה", required: true, width: "full" },
+        { id: "businessName", type: "short", label: "שם העסק", required: true, width: "full" },
+        {
+          id: "companyId",
+          type: "short",
+          label: "ח.פ.",
+          width: "full",
+          placeholder: "מספר ח.פ. / עוסק",
+        },
+        {
+          id: "logo1",
+          type: "file",
+          label: "לוגו הקהילה",
+          required: true,
+          width: "half",
+          help: "PNG, JPG או SVG",
+        },
+        {
+          id: "logo2",
+          type: "file",
+          label: "לוגו נוסף",
+          width: "half",
+          help: "גרסה בצבעים אחרים (למשל לבן על רקע כהה)",
+        },
+        {
+          id: "founded",
+          type: "number",
+          label: "שנת הקמה",
+          required: true,
+          width: "half",
+          placeholder: "2019",
+        },
+        {
+          id: "ageRange",
+          type: "short",
+          label: "טווח גילאים",
+          width: "half",
+          placeholder: "למשל 30–45",
+        },
+        {
+          id: "purpose",
+          type: "long",
+          label: "מטרת הקהילה",
+          width: "full",
+          maxWords: 50,
+          placeholder: "במשפט או שניים: מה הקהילה עושה ולמי היא מיועדת",
+        },
+        {
+          id: "audience",
+          type: "multi",
+          label: "מי הקהל שלכם?",
+          help: "ניתן לבחור מספר אופציות",
+          width: "full",
+          options: [
+            "רווקים ורווקות",
+            "גרושים וגרושות",
+            "רק נשים",
+            "רק גברים",
+            "דתיים",
+            "דתיים לאומים",
+            "חרדים",
+            "עולים",
+            "ספורט ופנאי",
+            "להט״בים",
+            "טיולים",
+          ],
+        },
+        {
+          id: "eventTypes",
+          type: "multi",
+          label: "סוגי אירועים ומפגשים בקהילה",
+          help: "ניתן לבחור מספר אופציות",
+          width: "full",
+          options: [
+            "סדנאות",
+            "ריטריט",
+            "מפגשי הכרויות ומינגלינג",
+            "ספיד דייט",
+            "מסיבות",
+            "ארוחות ערב",
+            "נטוורקינג",
+            "טיולים",
+            "נסיעות לחו״ל",
+            "משחקי הכרויות",
+            "הפעלות וקונספט מיוחדים",
+          ],
+        },
+        {
+          id: "eventsCount",
+          type: "number",
+          label: "כמות אירועים ומפגשים שהפקת",
+          width: "half",
+          placeholder: "משוער",
+        },
+        {
+          id: "attendance",
+          type: "number",
+          label: "סך כמות המשתתפים באירועי הקהילה",
+          width: "half",
+          placeholder: "משוער",
+        },
+      ],
+    },
+    {
+      id: "platforms",
+      title: "פלטפורמות הקהילה",
+      subtitle: "הכוח שאתם מביאים",
+      sumLabel: "סכום הקהלים שהזנתם",
+      fields: [
+        {
+          id: "fbGroup",
+          type: "number",
+          label: "פייסבוק: מספר חברים בקבוצה",
+          width: "half",
+          placeholder: "מספר חברים",
+          sum: true,
+        },
+        {
+          id: "fbPage",
+          type: "number",
+          label: "פייסבוק: מספר עוקבים בדף",
+          width: "half",
+          placeholder: "מספר עוקבים",
+          sum: true,
+        },
+        {
+          id: "instagram",
+          type: "number",
+          label: "אינסטגרם",
+          width: "half",
+          placeholder: "מספר עוקבים",
+          sum: true,
+        },
+        {
+          id: "whatsapp",
+          type: "number",
+          label: "וואטסאפ",
+          width: "half",
+          placeholder: "מספר חברים",
+          sum: true,
+        },
+        {
+          id: "newsletter",
+          type: "number",
+          label: "ניוזלטר",
+          width: "full",
+          placeholder: "מספר מנויים",
+          sum: true,
+        },
+        {
+          id: "openRate",
+          type: "number",
+          label: "אחוז פתיחה בניוזלטר",
+          width: "half",
+          placeholder: "35",
+          percent: true,
+        },
+        {
+          id: "clickRate",
+          type: "number",
+          label: "אחוז הקלקה בניוזלטר",
+          width: "half",
+          placeholder: "4",
+          percent: true,
+        },
+        {
+          id: "totalExposure",
+          type: "number",
+          label: "חשיפה כללית משוערת בכל הערוצים",
+          width: "full",
+          placeholder: "למשל 40,000",
+        },
+      ],
+    },
+    {
+      id: "partnersSection",
+      title: "מנהלים ושותפים נוספים בקהילה",
+      subtitle: "מי עוד בצוות",
+      fields: [{ id: "partners", type: "people", label: "", width: "full" }],
+    },
+  ],
+  listFields: ["communityName", "firstName", "phone", "city"],
+};
+
+const BLANK_TEXTS: FormTexts = {
+  kicker: "שלום,",
+  headline: "הוזמנתם להצטרף",
+  year: "2027",
+  title: "שם הטופס",
+  lead: "כתבו כאן כמה מילים על הטופס. אפשר להדגיש **מילים חשובות** בין כוכביות כפולות.",
+  cities: "",
+  citiesNote: "",
+  introTitle: "ספרו לנו קצת עליכם",
+  introText: "מלאו את הטופס ואנחנו נחזור אליכם.",
+  consent: "אני מאשר/ת שהפרטים נכונים ומסכים/ה שייצרו איתי קשר.",
+  submit: "שליחה",
+  doneTitle: "תודה!",
+  doneText: "התשובה התקבלה. נהיה בקשר בקרוב.",
+  closedTitle: "הטופס סגור",
+  closedText: "הטופס הזה כבר לא מקבל תשובות.",
+  footer: "",
+};
+
+export const TEMPLATE_TEXTS: Record<TemplateId, Partial<FormTexts>> = {
+  letter: { kicker: "שלום,", headline: "הוזמנתם להצטרף" },
+  match: { kicker: "אנחנו בפנים! מה צריך?", headline: "יש התאמה!" },
+  blush: { kicker: "אירוע ההכרויות הגדול של ישראל", headline: "ערב אחד, אלפי התחלות" },
+};
+
+export function blankForm(template: TemplateId = "letter"): FormDef {
+  return {
+    version: 1,
+    texts: { ...BLANK_TEXTS, ...TEMPLATE_TEXTS[template] },
+    sections: [
+      {
+        id: "s_personal",
+        title: "פרטים אישיים",
+        subtitle: "",
+        fields: [
+          { id: "q_name", type: "short", label: "שם מלא", required: true, width: "half" },
+          {
+            id: "q_phone",
+            type: "phone",
+            label: "טלפון נייד",
+            required: true,
+            width: "half",
+            placeholder: "050-0000000",
+          },
+          {
+            id: "q_email",
+            type: "email",
+            label: "מייל",
+            width: "full",
+            placeholder: "name@example.com",
+          },
+        ],
+      },
+    ],
+    listFields: ["q_name", "q_phone"],
+  };
+}
+
+/** The sign-up form dressed in a given design's own opening lines, for design previews. */
+export function sampleFor(template: TemplateId): FormDef {
+  if (template === "letter") return JOIN_2027;
+  return { ...JOIN_2027, texts: { ...JOIN_2027.texts, ...TEMPLATE_TEXTS[template] } };
+}
